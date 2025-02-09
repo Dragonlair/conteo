@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conteo de minerales en la enfermedad renal</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="plugins/adminlte/adminlte.min.css">
+
+    <style>
+        .modal-header {
+            color: var(--white);
+            background-color: #fbb88d;
+        }
+
+        .modal-body {
+            background-color: #f5f5f5;
+        }
+
+        .modal-body label {
+            color: #36767f;
+        }
+
+        table.info td:last-child {
+            text-align: right;
+        }
+
+        table.info tbody td {
+            color: #36767f;
+            font-weight: bold;
+        }
+
+        div.callout {
+            background-color: #fae2ca;
+        }
+    </style>
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script defer src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script defer src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script defer src="plugins/adminlte/adminlte.min.js"></script>
+
+    <script defer src="plugins/moment/moment.min.js"></script>
+    <script defer src="plugins/moment/locale/es-mx.js"></script>
+
+    <script defer src="plugins/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="plugins/tempusdominus/tempusdominus-bootstrap-4.min.css">
+
+    <script defer src="plugins/numeric-quantity.umd.js"></script>
+
+    <script defer src="plugins/chart.js/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2-bootstrap4.min.css">
+    <script defer src="plugins/select2/js/select2.min.js"></script>
+    <script defer src="plugins/select2/js/i18n/es.js"></script>
+
+    <script defer src="js/app.js"></script>
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+    <script>0</script>
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-primary">
+            <h5 id="title"><i class="fas fa-balance-scale-right"></i> Conteo de minerales en la enfermedad renal</h5>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper"
+            style="background-image: url(images/mainbg.jpeg); background-position: center center; background-size: cover;">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                    <div class="input-group-prepend">
+                                        <button id="allday" class="btn btn-primary"><i
+                                                class="fas fa-flask"></i></button>
+                                        <button id="showstats" class="btn btn-primary"><i
+                                                class="fas fa-chart-area"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control datetimepicker-input"
+                                        data-target="#datetimepicker4" style="font-weight: bold;" readonly />
+                                    <div class="input-group-append bg-primary" data-target="#datetimepicker4"
+                                        data-toggle="datetimepicker">
+                                        <div class="input-group-text bg-primary"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col" id="comidas">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h3 class="card-title text-primary"><i class="fas fa-sun text-warning"></i> Desayuno
+                                    </h3>
+                                    <div class="card-tools">
+                                        <div class="btn-group">
+                                            <button name="count" data='<i class="fas fa-sun text-warning"></i> Desayuno'
+                                                class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-balance-scale-right"></i></button>
+                                            <button name="add" data="desayuno" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" name="desayuno">
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h3 class="card-title text-primary"><i class="fas fa-apple-alt text-danger"></i>
+                                        Colación
+                                        matutina</h3>
+                                    <div class="card-tools">
+                                        <div class="btn-group">
+                                            <button name="count"
+                                                data='<i class="fas fa-apple-alt text-danger"></i> Colación matutina'
+                                                class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-balance-scale-right"></i></button>
+                                            <button name="add" data="cmatutina" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" name="cmatutina">
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h3 class="card-title text-primary"><i
+                                            class="fas fa-drumstick-bite text-warning"></i> Comida
+                                    </h3>
+                                    <div class="card-tools">
+                                        <div class="btn-group">
+                                            <button name="count"
+                                                data='<i class="fas fa-drumstick-bite text-warning"></i> Comida'
+                                                class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-balance-scale-right"></i></button>
+                                            <button name="add" data="comida" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" name="comida">
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h3 class="card-title text-primary"><i class="fas fa-carrot text-orange"></i>
+                                        Colación vespertina
+                                    </h3>
+                                    <div class="card-tools">
+                                        <div class="btn-group">
+                                            <button name="count"
+                                                data='<i class="fas fa-carrot text-orange"></i> Colación vespertina'
+                                                class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-balance-scale-right"></i></button>
+                                            <button name="add" data="cvespertina" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" name="cvespertina">
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h3 class="card-title text-primary"><i class="fas fa-moon text-cyan"></i> Cena</h3>
+                                    <div class="card-tools">
+                                        <div class="btn-group">
+                                            <button name="count" data='<i class="fas fa-moon text-cyan"></i> Cena'
+                                                class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-balance-scale-right"></i></button>
+                                            <button name="add" data="cena" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" name="cena">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+
+            <div class="modal fade" id="frmAddMeal" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-primary"><i class="fas fa-plus"></i> Agregar alimento</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <div name="cat">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="categoria">Categoría</label>
+                                        <select name="categoria" id="categoria" class="custom-select">
+                                            <option selected disabled value="">Seleccione una categoría</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div name="alimentos">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="alimento"><i class="fas fa-utensils"></i> Alimentos</label>
+                                        <select name="alimento" id="alimento">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div name="detalles">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="porciones"><i class="fas fa-balance-scale"></i> Porciones</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" id="porciones" name="porciones">
+                                            <div class="input-group-append">
+                                                <span id="unidades" class="input-group-text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnAgregarAlimento" class="btn btn-primary btn-block">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="count" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="titulo-tiempo" class="modal-title text-primary"></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped info">
+                                <tbody>
+                                    <tr>
+                                        <td>Energía</td>
+                                        <td name="energiakc"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proteínas</td>
+                                        <td name="proteina"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grasa</td>
+                                        <td name="lipidos"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hidratos de carbono</td>
+                                        <td name="hidratoscarbono"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sodio</td>
+                                        <td name="sodio"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potasio</td>
+                                        <td name="potasio"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fósforo</td>
+                                        <td name="fosforo"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcio</td>
+                                        <td name="calcio"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Selenio</td>
+                                        <td name="selenio"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hierro</td>
+                                        <td name="hierro"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agua</td>
+                                        <td name="agua"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="stats" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="titulo-tiempo" class="modal-title text-primary"><i class="fas fa-chart-area"></i>
+                                Totales por semana</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-xs">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb1" value="energia" checked>
+                                        <label class="form-check-label" for="rb1">
+                                          Energia (kcal)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb2" value="proteina">
+                                        <label class="form-check-label" for="rb2">
+                                          Proteinas (g)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb3" value="lipidos">
+                                        <label class="form-check-label" for="rb3">
+                                          Grasas (g)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb4" value="hierro">
+                                        <label class="form-check-label" for="rb4">
+                                          Hierro (mg)
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb5" value="hidratoscarbono">
+                                        <label class="form-check-label" for="rb5">
+                                          Carbohidratos (g)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb6" value="sodio">
+                                        <label class="form-check-label" for="rb6">
+                                          Sodio (mg)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb7" value="potasio">
+                                        <label class="form-check-label" for="rb7">
+                                          Potasio (mg)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb8" value="agua">
+                                        <label class="form-check-label" for="rb8">
+                                          Agua (ml)
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb9" value="fosforo">
+                                        <label class="form-check-label" for="rb9">
+                                          Fósforo (mg)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb10" value="calcio">
+                                        <label class="form-check-label" for="rb10">
+                                          Calcio (mg)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="options" id="rb11" value="selenio">
+                                        <label class="form-check-label" for="rb11">
+                                          Selenio (mg)
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="chart">
+                                <canvas id="lineChart"
+                                    style="min-height: 250px; height: 50vh; max-height: 50vh; max-width: 100%;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Designed at lionware software - 2022</strong>
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+</body>
+
+</html>
